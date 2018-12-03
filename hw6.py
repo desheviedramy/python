@@ -10,31 +10,25 @@
 Если номер слишком большой, то в качестве ответа выдайте слово «джакузи».
 """
 
-# Функция возвращающая число строк в файле
 def lines_count(filename):
     file = open(filename, "r")
     lines = sum(1 for line in file)
     file.close()
     return lines
     
-# Функция возвращает самое длинное слово
 def longest_word(Text):
-    # Счётчик символов
-    max_letters = 0
-    # Самое длинное слово 
+    max_letters = 0 
     word = ""
-    # Текущее слово
     current_word = ""
 
-    # Флаг для определения перехода к новому слову
-    position = 'out'
+    position = "out"
     for letter in Text:
         if letter != " " and position == "out":
             current_word += letter
             position = "in"
-        elif letter != " " and position == "in":
+        elif letter != " " and letter != "?" and position == "in":
             current_word += letter
-        elif letter == " ":
+        elif letter == " " or letter == "?":
             position = "out"
             if(len(current_word) > max_letters):
                 max_letters = len(current_word)
@@ -42,15 +36,10 @@ def longest_word(Text):
             current_word = ""
             
     return word
-# Функция для подсчёта слов в строке
-# Можно обойтись простым способом:
-#   len(Text.split())
-# Но мы сделаем "ручками"
+
 def words_count(Text):
-    #Счётчик слов
     words = 0
 
-    # Флаг для определения перехода к новому слову
     position = 'out'
     for letter in Text:
         if letter != " " and position == "out":
@@ -62,7 +51,6 @@ def words_count(Text):
     return words
 
 def get_first_word(Text):
-    # Флаг для определения перехода к новому слову
     position = 'out'
     word = ""
     for letter in Text:
@@ -143,3 +131,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+#я делала по другой книге, так как не была на семинаре и не знала, что она уже дается
